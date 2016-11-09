@@ -31,13 +31,21 @@ int main(int argc, char* argv[]) {
             break;
         }
 
-        gmp_printf("%s is an mpz %Zd\n", "here",number);
+        //gmp_printf("%s is an mpz %Zd\n", "here",number);
         vector<int> factors = divide_by_first_primes(number);
-        
-        for(int v = 0; v < factors.size(); ++v){
-            cout<<factors[v]<<endl;
-        }
 
+        double prod = 1;
+
+        for(int v = 0; v < factors.size(); ++v){
+            prod *= factors[v];
+        }
+        //gmp_printf("%d \n", mpz_cmp_d(number, prod));
+        if(mpz_cmp_d(number, prod) <= 0){
+            for(int v = 0; v < factors.size(); ++v){
+                cout<<factors[v]<<endl;
+            }
+        }else{cout<<"fail"<<endl;}
+        cout<<endl;
     }
 
 

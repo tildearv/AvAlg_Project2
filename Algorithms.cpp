@@ -38,11 +38,11 @@ vector<int> divide_by_first_primes(mpz_t number){
         }
         else{
             q = mpz_divisible_ui_p(number, n);
-            gmp_printf("%s %d\n","q: ", q);
+            //gmp_printf("%s %d\n","q: ", q);
             factors.push_back(n);
             mpz_divexact_ui (number, number, n);
-            gmp_printf("%s %Zd\n","reminder: ", number);
-            gmp_printf("%s %d\n","divisor: ", n);
+            //gmp_printf("%s %Zd\n","reminder: ", number);
+            //gmp_printf("%s %d\n","divisor: ", n);
         }
     }
     return factors;
