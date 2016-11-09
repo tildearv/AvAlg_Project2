@@ -1,34 +1,25 @@
-#include <fstream> // istream I/O
-#include <iostream> // cout
-#include <vector>
-#include <sstream>
-#include <algorithm>
-#include <string>
-//#include <time.h> // timer
-#include <ctime>
+#include <stdlib.h>
+#include <stdio.h>
+#include <gmp.h>
+#include <limits.h>
+
+//g++ -std=c++11 -o main.o main.cpp Algorithms.cpp -lgmp
 
 using namespace std;
 
 int main(int argc, char* argv[]) {
 
-    clock_t start = clock();
+    int current_input_number = 0;
 
-    std::ifstream infile("factoring.in");
+    //vector<int> v;
 
-    vector<int> v;
-    std::string line;
-    while (std::getline(infile, line))
-    {
-        std::istringstream iss(line);
-        long int a;
-        if (!(iss >> a) ){ 
-            cout<<"hej"<<endl;
-            break; } // error
-            cout<<a<<endl;
-        }   
+    int limit = (argc == 2 ? atoi(argv[1]) : INT_MAX );
 
-    for(int i = 0; i < v.size(); ++i){
-        cout<<v[i]<<endl;
+    mpz_t num;
+
+    mpz_init(num);
+    if (gmp_scanf("%Zd", num) <= 0){
+        mpz_clear(num);
     }
 
     return 0;
