@@ -2,7 +2,8 @@
 #define __ALGORITHMS_H_INCLUDED__
 
 #include <gmp.h>
+#include <vector>
 
-int isDivisable(int, int);
+std::vector<int> divide_by_first_primes(mpz_t);
 
 #endif
