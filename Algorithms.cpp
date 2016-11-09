@@ -4,6 +4,7 @@
 #include <iostream> // cout
 #include <string>
 #include <time.h>
+#include <gmp.h>
 
 #include "Algorithms.h"
 
@@ -13,3 +14,4 @@ int isDivisable(int number, int n){
     }
     return -1;
 }
+
