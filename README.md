@@ -7,6 +7,8 @@ Factoring big numbers
 ## O(n) naive
 
 
-# trial divide
-# read input files
-# Fix GMP lib
+# trial divide - done
+# read input files - done
+# Fix GMP lib - done
+
+#Quadratic Sieve
