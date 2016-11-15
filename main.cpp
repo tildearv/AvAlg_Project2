@@ -13,6 +13,7 @@
 //#include "primes.h"
 
 //g++ -std=c++11 -o main.o main.cpp Algorithms.cpp -lgmp
+//./main.o < "./samples/factoring.in"
 
 using namespace std;
 
@@ -32,23 +33,43 @@ int main(int argc, char* argv[]) {
         }
 
         //gmp_printf("%s is an mpz %Zd\n", "here",number);
+        int prob = is_prime(number, 50);
+
+        if(prob == 2){
+            gmp_printf("%Zd \n", number);
+            break;
+        }
+        //gmp_printf("%d \n", prob);
+
         vector<int> factors = divide_by_first_primes(number);
 
-        double prod = 1;
+        unsigned long int prod = 1;
+
+        mpz_t rest;
+        mpz_init_set(rest, number);
 
         for(int v = 0; v < factors.size(); ++v){
             prod *= factors[v];
+            mpz_divexact_ui (rest, rest, factors[v]);
         }
-        //gmp_printf("%d \n", mpz_cmp_d(number, prod));
+
+        int prob_rest = is_prime(rest, 50);
+
         if(mpz_cmp_d(number, prod) <= 0){
             for(int v = 0; v < factors.size(); ++v){
                 cout<<factors[v]<<endl;
             }
-        }else{cout<<"fail"<<endl;}
+        }
+        else if(prob_rest > 0){
+            for(int v = 0; v < factors.size(); ++v){
+                cout<<factors[v]<<endl;
+            }
+            gmp_printf("%Zd \n", rest);
+        }
+        else{
+            if(prob > 0){gmp_printf("%Zd \n", number);}else{cout<<"fail"<<endl;}}
         cout<<endl;
     }
-
-
 
     return 0;
 }

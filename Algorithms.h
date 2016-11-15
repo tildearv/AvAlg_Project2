@@ -5,5 +5,6 @@
 #include <vector>
 
 std::vector<int> divide_by_first_primes(mpz_t);
+int is_prime(mpz_t, int);
 
 #endif

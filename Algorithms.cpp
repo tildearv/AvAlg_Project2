@@ -13,6 +13,8 @@
 
 using namespace std;
 
+//Divide by first N primes
+
 vector<int> divide_by_first_primes(mpz_t number){
 
     std::vector<int> factors;
@@ -32,19 +34,25 @@ vector<int> divide_by_first_primes(mpz_t number){
     int i = 0;
     while(i < count){
         unsigned long int n = primes_list[i];
-        int q = mpz_divisible_ui_p(number, n);
+        int q = mpz_divisible_ui_p(number, n);  // check if divisable
         if(q ==0){
             ++i;
         }
         else{
-            q = mpz_divisible_ui_p(number, n);
+            q = mpz_divisible_ui_p(number, n); //for factors with degree > 1
             //gmp_printf("%s %d\n","q: ", q);
             factors.push_back(n);
-            mpz_divexact_ui (number, number, n);
+            mpz_divexact_ui (number, number, n); //result = number/n
             //gmp_printf("%s %Zd\n","reminder: ", number);
             //gmp_printf("%s %d\n","divisor: ", n);
         }
     }
     return factors;
+}
+
+int is_prime(mpz_t number, int reps){
+    //returns 0 if not prime, 1 if probable prime, 2 if prime for sure
+    int prob = mpz_probab_prime_p(number, reps);
+    return prob;
 }
 
