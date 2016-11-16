@@ -3,6 +3,8 @@ Factoring big numbers
 
 #manual: https://gmplib.org/manual/index.html#Top
 
+#Might need data structure to store factors
+
 #Naive
 
 #Pollard rho-algorithm
