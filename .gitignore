@@ -1,4 +1,4 @@
 *.o
 *.swp
 tags
-./samples/test.in
+samples/test.in
