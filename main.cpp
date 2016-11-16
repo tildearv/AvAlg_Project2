@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) {
             break;
         }
 
-        solve_pollard(number, 2, 2, 2);
+        solve_pollard(number, 2, 2, 1);
 
         //gmp_printf("%d \n", prob);
 

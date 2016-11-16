@@ -32,6 +32,8 @@ void solve_pollard (mpz_t number, unsigned long int x_fixed, int cycle_size, uns
     mpz_set_ui(factor, 1);
     int comp = mpz_cmp_ui(factor, 1); //factor == 1
 
+    gmp_printf("%s is an mpz %Zd\n", "here",number);
+
     while (comp == 0) {
         for (int count=1; count <= cycle_size && comp <= 0; ++count) {
             mpz_mul(x2,x2,x2);
