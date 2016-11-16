@@ -64,10 +64,7 @@ vector<int> naive_factoring(mpz_t number) {
     int div;
     bool done = false;
     unsigned long int N = mpz_get_ui(number);
-    N = (long double) N;
-    double rootN = ceil(sqrt(N));
-    rootN = (unsigned long int) rootN;
-    for (unsigned long int p = 2; p <= rootN; p++) {
+    for (unsigned long int p = 2; p < N; p++) {
         done = false;
         while(!done) {
             div = mpz_divisible_ui_p(number, p);
