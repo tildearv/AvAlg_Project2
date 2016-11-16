@@ -40,7 +40,9 @@ int main(int argc, char* argv[]) {
             break;
         }
 
-        solve_pollard(number, 2, 2, 1);
+        /* solve_pollard(number, 2, 2, 1); */
+
+        vector<int> factors = naive_factoring(number);
 
         //gmp_printf("%d \n", prob);
 

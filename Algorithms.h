@@ -4,7 +4,8 @@
 #include <gmp.h>
 #include <vector>
 
-std::vector<int> divide_by_first_primes(mpz_t);
 int is_prime(mpz_t, int);
+std::vector<int> divide_by_first_primes(mpz_t);
+std::vector<int> naive_factoring(mpz_t);
 
 #endif
