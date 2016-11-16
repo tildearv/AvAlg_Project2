@@ -47,19 +47,14 @@ int main(int argc, char* argv[]) {
         //gmp_printf("%d \n", prob);
 
         /*vector<int> factors = divide_by_first_primes(number);
-
         unsigned long int prod = 1;
-
         mpz_t rest;
         mpz_init_set(rest, number);
-
         for(int v = 0; v < factors.size(); ++v){
             prod *= factors[v];
             mpz_divexact_ui (rest, rest, factors[v]);
         }
-
         int prob_rest = is_prime(rest, 50);
-
         if(mpz_cmp_d(number, prod) <= 0){
             for(int v = 0; v < factors.size(); ++v){
                 cout<<factors[v]<<endl;
