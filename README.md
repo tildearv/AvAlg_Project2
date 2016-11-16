@@ -9,3 +9,5 @@ Factoring big numbers
 # Fix GMP lib - done
 
 #Quadratic Sieve
+
+#Pollard rho-algorithm
