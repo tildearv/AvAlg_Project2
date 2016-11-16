@@ -56,3 +56,5 @@ int is_prime(mpz_t number, int reps){
     return prob;
 }
 
+//DO NAIVE HERE
+

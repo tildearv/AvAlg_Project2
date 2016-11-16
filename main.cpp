@@ -10,7 +10,7 @@
 #include <time.h>
 
 #include "Algorithms.h"
-//#include "primes.h"
+#include "pollard.h"
 
 //g++ -std=c++11 -o main.o main.cpp Algorithms.cpp -lgmp
 //./main.o < "./samples/factoring.in"
@@ -39,9 +39,12 @@ int main(int argc, char* argv[]) {
             gmp_printf("%Zd \n", number);
             break;
         }
+
+        solve_pollard(number, 2, 2, 2);
+
         //gmp_printf("%d \n", prob);
 
-        vector<int> factors = divide_by_first_primes(number);
+        /*vector<int> factors = divide_by_first_primes(number);
 
         unsigned long int prod = 1;
 
@@ -68,7 +71,7 @@ int main(int argc, char* argv[]) {
         }
         else{
             if(prob > 0){gmp_printf("%Zd \n", number);}else{cout<<"fail"<<endl;}}
-        cout<<endl;
+        cout<<endl;*/
     }
 
     return 0;
