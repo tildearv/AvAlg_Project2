@@ -4,10 +4,11 @@
 #include <gmp.h>
 #include <vector>
 
+#include "factor_list.h"
 #include "Algorithms.h"
 
 void solve_pollard(mpz_t, unsigned long int, int, unsigned long int);
 void func(mpz_t, mpz_t, mpz_t);
-std::vector<int> floyd(mpz_t, unsigned long int, unsigned long int);
+factor_list ** floyd(mpz_t, unsigned long int, unsigned long int);
 
 #endif

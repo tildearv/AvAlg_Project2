@@ -70,9 +70,9 @@ void func(mpz_t y, mpz_t x, mpz_t number){//y = (x^2+a)%number;
 
 }
 
-vector<int> floyd(mpz_t number, unsigned long int a_in, unsigned long int b_in) {
+factor_list ** floyd(mpz_t number, unsigned long int a_in, unsigned long int b_in) {
 
-    vector<int> f;
+    factor_list ** f;
 
     mpz_t a;
     mpz_init (a);
@@ -117,14 +117,17 @@ vector<int> floyd(mpz_t number, unsigned long int a_in, unsigned long int b_in) 
 
             if(p == 0){
                 vector<int> fac = divide_by_first_primes(factor);
-                f.insert(std::end(f), std::begin(fac), std::end(fac));
+                add_list(f, fac);
+                //f.insert(std::end(f), std::begin(fac), std::end(fac));
             }else{
                 //gmp_printf("%Zd\n", factor);
-                f.push_back(mpz_get_ui(factor));} //probably this that make "wrong answer in kattis"
+                //f.push_back(mpz_get_ui(factor));} //probably this that make "wrong answer in kattis"
+                add(f, &factor);
+            }
         }
         ++i;
         comp = mpz_cmp(a, b);
     }
-    cout<<endl;
+    factor_list_print(* f);
     return f;
 }

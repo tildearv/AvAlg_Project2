@@ -40,14 +40,14 @@ int main(int argc, char* argv[]) {
         }else{
 
             //solve_pollard(number, 2, 2, 1); 
-            //vector<int> factors = floyd(number, 2, 2); 
+            factor_list ** factors = floyd(number, 2, 2); 
 
-            vector<int> factors = naive_factoring(number);
+            //vector<int> factors = naive_factoring(number);
 
             //gmp_printf("%d \n", prob);
 
             //vector<int> factors = divide_by_first_primes(number);
-            unsigned long int prod = 1;
+            /*unsigned long int prod = 1;
             mpz_t rest;
             mpz_init_set(rest, number);
             for(int v = 0; v < factors.size(); ++v){
@@ -60,13 +60,13 @@ int main(int argc, char* argv[]) {
                     cout<<factors[v]<<endl;
                 }
             }
-            /*else if(prob_rest > 0){
+            else if(prob_rest > 0){
                 for(int v = 0; v < factors.size(); ++v){
                     cout<<factors[v]<<endl;
                 }
                 gmp_printf("%Zd \n", rest);
-            }*/
-            else{cout<<"fail"<<endl;}
+            }
+            else{cout<<"fail"<<endl;}*/
             cout<<endl;
         }
     }
