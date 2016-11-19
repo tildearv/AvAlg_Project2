@@ -11,6 +11,7 @@
 
 #include "Algorithms.h"
 #include "pollard.h"
+#include "factor_list.h"
 
 //g++ -std=c++11 -o main.o main.cpp Algorithms.cpp -lgmp
 //./main.o < "./samples/factoring.in"
@@ -23,10 +24,10 @@ int main(int argc, char* argv[]) {
 
     int limit = INT_MAX ;
     mpz_t number;
+    mpz_init(number);
 
     while(++i <= limit){
 
-        mpz_init(number);
         if (gmp_scanf("%Zd", number) <= 0){
             mpz_clear(number);
             break;
@@ -40,7 +41,19 @@ int main(int argc, char* argv[]) {
         }else{
 
             //solve_pollard(number, 2, 2, 1); 
-            factor_list ** factors = floyd(number, 2, 2); 
+            factor_list * factors = (factor_list*)malloc(sizeof(factor_list));
+            factors->value = NULL;
+            factors->next = NULL;
+
+            mpz_t temp_number;
+            mpz_init_set(temp_number, number);
+
+            floyd(&factors, temp_number, 2, 2);
+
+            if(exact_factors(factors, number)){
+                factors_print(factors);
+            }else if(prob == 1){gmp_printf("%Zd \n", number);}
+            else{cout<<"fail"<<endl;}
 
             //vector<int> factors = naive_factoring(number);
 
@@ -70,6 +83,6 @@ int main(int argc, char* argv[]) {
             cout<<endl;
         }
     }
-
+    //mpz_clear(number);
     return 0;
 }

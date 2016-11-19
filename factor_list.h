@@ -12,6 +12,7 @@ typedef struct factor_list
 
 factor_list * add(factor_list **, mpz_t *);
 factor_list * add_list(factor_list **, std::vector<int>);
-void factor_list_print(factor_list *);
+void factors_print(factor_list *);
+bool exact_factors(factor_list *, mpz_t);
 
 #endif

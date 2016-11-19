@@ -70,9 +70,9 @@ void func(mpz_t y, mpz_t x, mpz_t number){//y = (x^2+a)%number;
 
 }
 
-factor_list ** floyd(mpz_t number, unsigned long int a_in, unsigned long int b_in) {
+factor_list ** floyd(factor_list **f, mpz_t number, unsigned long int a_in, unsigned long int b_in) {
 
-    factor_list ** f;
+    //factor_list *f = (factor_list*)malloc(sizeof(factor_list));
 
     mpz_t a;
     mpz_init (a);
@@ -82,9 +82,9 @@ factor_list ** floyd(mpz_t number, unsigned long int a_in, unsigned long int b_i
     mpz_init (b);
     mpz_set_ui(b, b_in);
 
-    mpz_t factor;
-    mpz_init (factor);
-    mpz_set_ui(factor, 1);
+    mpz_t* factor = (mpz_t *) malloc(sizeof(mpz_t));;
+    mpz_init (*factor);
+    mpz_set_ui(*factor, 1);
 
     int comp = mpz_cmp(a, b); //a == b
 
@@ -108,26 +108,41 @@ factor_list ** floyd(mpz_t number, unsigned long int a_in, unsigned long int b_i
         mpz_init (res);
         mpz_sub(res, b, a);
             //gmp_printf("%s res is %Zd\n", "The", x_res);
-        mpz_gcd(factor, number, res);
+        mpz_gcd(*factor, number, res);
 
-        if(mpz_cmp_ui(factor, 1) > 0){
+        mpz_clear(tmp);
+        mpz_clear(res);
+
+        if(mpz_cmp_ui(*factor, 1) > 0){
+            //gmp_printf("%s number before is %Zd\n", "The", number);
             //gmp_printf("%s factor is %Zd\n", "The", factor);//Check if factor is prime!
-            int p = is_prime(factor, 15);
-            mpz_divexact(number, number, factor);
-
+            int p = is_prime(*factor, 15);
+            mpz_divexact(number, number, *factor);
+            //gmp_printf("%s number after is %Zd\n", "The", number);
             if(p == 0){
-                vector<int> fac = divide_by_first_primes(factor);
-                add_list(f, fac);
+                //gmp_printf("%s factor is %Zd\n", "The 2", factor);
+                vector<int> fac = divide_by_first_primes(*factor);
+                for(int j = 0; j < fac.size(); ++j){
+                    mpz_t * tmp2 = (mpz_t *) malloc(sizeof(mpz_t));
+                    mpz_init_set_ui(*tmp2, fac[i]);
+                    //gmp_printf("%s tmp is %Zd\n", "The", tmp);
+                    add(f, tmp2);
+                }
+                //gmp_printf("%s number after adding is %Zd\n", "The 1", number);
                 //f.insert(std::end(f), std::begin(fac), std::end(fac));
             }else{
-                //gmp_printf("%Zd\n", factor);
+                //gmp_printf("%s factor is %Zd\n", "The 3", factor);
                 //f.push_back(mpz_get_ui(factor));} //probably this that make "wrong answer in kattis"
-                add(f, &factor);
+                add(f, factor);
+                //gmp_printf("%s number after adding is %Zd\n", "The 2", number);
             }
         }
         ++i;
         comp = mpz_cmp(a, b);
     }
-    factor_list_print(* f);
+    //gmp_printf("%s\n", "end");
+    //factors_print(*f);
+    mpz_clear(a);
+    mpz_clear(b);
     return f;
 }
