@@ -34,10 +34,11 @@ int main(int argc, char* argv[]) {
         }
 
         //gmp_printf("%s is an mpz %Zd\n", "here",number);
-        int prob = is_prime(number, 50);
+        int prob = is_prime(number, 20);
 
-        if(prob == 2){
+        if(prob > 0){
             gmp_printf("%Zd \n", number);
+            cout<<endl;
         }else{
 
             //solve_pollard(number, 2, 2, 1); 
@@ -48,7 +49,9 @@ int main(int argc, char* argv[]) {
             mpz_t temp_number;
             mpz_init_set(temp_number, number);
 
-            floyd(&factors, temp_number, 2, 2);
+            factors = divide_by_first_primes(&factors, temp_number);
+
+            floyd(&factors, temp_number, 13, 13);
 
             if(exact_factors(factors, number)){
                 factors_print(factors);
@@ -59,7 +62,6 @@ int main(int argc, char* argv[]) {
 
             //gmp_printf("%d \n", prob);
 
-            //vector<int> factors = divide_by_first_primes(number);
             /*unsigned long int prod = 1;
             mpz_t rest;
             mpz_init_set(rest, number);

@@ -62,7 +62,7 @@ void solve_pollard (mpz_t number, unsigned long int y, int cycle_size, unsigned 
 
 void func(mpz_t y, mpz_t x, mpz_t number){//y = (x^2+a)%number;
 
-    unsigned long int a = 2;
+    unsigned long int a = 1;
 
     mpz_mul(y,x,x);
     mpz_add_ui(y, y, a);
@@ -73,6 +73,16 @@ void func(mpz_t y, mpz_t x, mpz_t number){//y = (x^2+a)%number;
 factor_list ** floyd(factor_list **f, mpz_t number, unsigned long int a_in, unsigned long int b_in) {
 
     //factor_list *f = (factor_list*)malloc(sizeof(factor_list));
+
+    if (mpz_cmp_ui(number, 1) <= 0){//number 1 and under
+        return f;
+    }else if(is_prime(number, 5) > 0){
+        mpz_t* factor = (mpz_t *) malloc(sizeof(mpz_t));;
+        mpz_init (*factor);
+        mpz_set(*factor, number);
+        add(f, factor);
+        return f;
+    }
 
     mpz_t a;
     mpz_init (a);
@@ -90,7 +100,7 @@ factor_list ** floyd(factor_list **f, mpz_t number, unsigned long int a_in, unsi
 
     bool first = true;
     int i = 0;
-    int iter = 1000000;
+    int iter = 350000;
 
     //gmp_printf("%s is an mpz %Zd\n", "here",number);
 
@@ -107,19 +117,17 @@ factor_list ** floyd(factor_list **f, mpz_t number, unsigned long int a_in, unsi
         mpz_t res;
         mpz_init (res);
         mpz_sub(res, b, a);
-            //gmp_printf("%s res is %Zd\n", "The", x_res);
         mpz_gcd(*factor, number, res);
 
         mpz_clear(tmp);
         mpz_clear(res);
 
         if(mpz_cmp_ui(*factor, 1) > 0){
-            //gmp_printf("%s number before is %Zd\n", "The", number);
             //gmp_printf("%s factor is %Zd\n", "The", factor);//Check if factor is prime!
-            int p = is_prime(*factor, 15);
+            //int p = is_prime(*factor, 15);
             mpz_divexact(number, number, *factor);
             //gmp_printf("%s number after is %Zd\n", "The", number);
-            if(p == 0){
+            /*if(p == 0){
                 //gmp_printf("%s factor is %Zd\n", "The 2", factor);
                 vector<int> fac = divide_by_first_primes(*factor);
                 for(int j = 0; j < fac.size(); ++j){
@@ -128,14 +136,9 @@ factor_list ** floyd(factor_list **f, mpz_t number, unsigned long int a_in, unsi
                     //gmp_printf("%s tmp is %Zd\n", "The", tmp);
                     add(f, tmp2);
                 }
-                //gmp_printf("%s number after adding is %Zd\n", "The 1", number);
-                //f.insert(std::end(f), std::begin(fac), std::end(fac));
-            }else{
-                //gmp_printf("%s factor is %Zd\n", "The 3", factor);
-                //f.push_back(mpz_get_ui(factor));} //probably this that make "wrong answer in kattis"
+            }else{*/
                 add(f, factor);
-                //gmp_printf("%s number after adding is %Zd\n", "The 2", number);
-            }
+            //}
         }
         ++i;
         comp = mpz_cmp(a, b);
