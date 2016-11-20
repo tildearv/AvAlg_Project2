@@ -77,7 +77,7 @@ factor_list ** floyd(factor_list **f, mpz_t number, unsigned long int a_in, unsi
     if (mpz_cmp_ui(number, 1) <= 0){//number 1 and under
         return f;
     }else if(is_prime(number, 5) > 0){
-        mpz_t* factor = (mpz_t *) malloc(sizeof(mpz_t));;
+        mpz_t* factor = (mpz_t *) malloc(sizeof(mpz_t));
         mpz_init (*factor);
         mpz_set(*factor, number);
         add(f, factor);
@@ -100,7 +100,7 @@ factor_list ** floyd(factor_list **f, mpz_t number, unsigned long int a_in, unsi
 
     bool first = true;
     int i = 0;
-    int iter = 350000;
+    int iter = 400000;
 
     //gmp_printf("%s is an mpz %Zd\n", "here",number);
 
@@ -124,6 +124,7 @@ factor_list ** floyd(factor_list **f, mpz_t number, unsigned long int a_in, unsi
 
         if(mpz_cmp_ui(*factor, 1) > 0){
             //gmp_printf("%s factor is %Zd\n", "The", factor);//Check if factor is prime!
+            //cout<<"iter = "<<i<<endl;
             //int p = is_prime(*factor, 15);
             mpz_divexact(number, number, *factor);
             //gmp_printf("%s number after is %Zd\n", "The", number);

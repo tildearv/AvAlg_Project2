@@ -51,7 +51,7 @@ int main(int argc, char* argv[]) {
 
             factors = divide_by_first_primes(&factors, temp_number);
 
-            floyd(&factors, temp_number, 13, 13);
+            floyd(&factors, temp_number, 59, 59);
 
             if(exact_factors(factors, number)){
                 factors_print(factors);

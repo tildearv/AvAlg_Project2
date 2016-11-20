@@ -82,7 +82,6 @@ factor_list * divide_by_first_primes(factor_list ** factors, mpz_t number){
         else{
             q = mpz_divisible_p(number, *n); //for factors with degree > 1
             //gmp_printf("%s %d\n","q: ", q);
-            //factors.push_back(n);
             add(factors, n);
             mpz_divexact(number, number, *n); //result = number/n
             //gmp_printf("%s %Zd\n","reminder: ", number);

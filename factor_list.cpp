@@ -37,9 +37,15 @@ factor_list * add_list(factor_list ** f, vector<int> v){
 bool exact_factors(factor_list * f, mpz_t number){ //See if factorization is exact
     mpz_t prod;
     mpz_init_set_ui(prod, 1);
+
+    mpz_t* rest = (mpz_t *) malloc(sizeof(mpz_t));
+    mpz_init (*rest);
+    mpz_set(*rest, number);
+
     //gmp_printf("%s product is %Zd\n", "The", prod);
     while(*(f->value) != NULL){
         mpz_mul(prod,prod,*(f->value));
+        mpz_divexact(*rest, number, prod);
         //gmp_printf("%Zd\n", f->value);
         //gmp_printf("%s product is %Zd\n", "The", prod);
         f = f->next;
