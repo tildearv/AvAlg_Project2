@@ -40,8 +40,7 @@ int main(int argc, char* argv[]) {
             gmp_printf("%Zd \n", number);
             cout<<endl;
         }else{
-
-            //solve_pollard(number, 2, 2, 1); 
+ 
             factor_list * factors = (factor_list*)malloc(sizeof(factor_list));
             factors->value = NULL;
             factors->next = NULL;
@@ -53,10 +52,39 @@ int main(int argc, char* argv[]) {
 
             floyd(&factors, temp_number, 59, 59);
 
-            if(exact_factors(factors, number)){
+            factor_list *f = (factor_list*)malloc(sizeof(factor_list));
+
+            *f = *factors;
+
+            mpz_t prod;
+            mpz_init_set_ui(prod, 1);
+
+            mpz_t rest;
+            mpz_init (rest);
+            mpz_set(rest, number);
+
+            while(*(f->value) != NULL){
+                mpz_mul(prod,prod,*(f->value));
+                mpz_divexact(rest, number, prod);
+                f = f->next;
+            }
+            //gmp_printf("%s number is %Zd\n", "The", number);
+            //gmp_printf("%s rest is %Zd\n", "The", rest);
+            int comp = mpz_cmp(number, prod);
+
+            if(comp==0){
                 factors_print(factors);
-            }else if(prob == 1){gmp_printf("%Zd \n", number);}
-            else{cout<<"fail"<<endl;}
+                cout<<endl;
+            }else if(is_prime(rest, 5) > 0){ //WHY NOT WORKING???
+                //add(&factors, &rest);
+                //factors_print(factors);
+                //gmp_printf("%Zd\n", rest);
+                cout<<"fail"<<endl;
+                cout<<endl;
+            }else{cout<<"fail"<<endl;
+                cout<<endl;
+            }
+
 
             //vector<int> factors = naive_factoring(number);
 
@@ -82,9 +110,9 @@ int main(int argc, char* argv[]) {
                 gmp_printf("%Zd \n", rest);
             }
             else{cout<<"fail"<<endl;}*/
-            cout<<endl;
+            
         }
     }
-    //mpz_clear(number);
+    cout<<endl;
     return 0;
 }

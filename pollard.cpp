@@ -31,7 +31,7 @@ void solve_pollard (mpz_t number, unsigned long int y, int cycle_size, unsigned 
     int iter = 2;
     int i = 0;
 
-    gmp_printf("%s is an mpz %Zd\n", "here",number);
+    //gmp_printf("%s is an mpz %Zd\n", "here",number);
 
     while ( (i < iter) && (mpz_cmp_ui(number, 1) > 0) ) {
         //for (int count=1; count <= cycle_size && comp <= 0; ++count) {
@@ -55,7 +55,7 @@ void solve_pollard (mpz_t number, unsigned long int y, int cycle_size, unsigned 
         //cycle_size *= 2;
         mpz_set(x2, y2);//x = y;
         mpz_divexact (number, number, factor);
-        gmp_printf("%s number is %Zd\n", "The", number);
+        //gmp_printf("%s number is %Zd\n", "The", number);
         //comp = mpz_cmp_ui(factor, 1);
     }
 }
