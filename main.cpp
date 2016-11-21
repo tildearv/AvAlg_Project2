@@ -13,7 +13,7 @@
 #include "pollard.h"
 #include "factor_list.h"
 
-//g++ -std=c++11 -o main.o main.cpp Algorithms.cpp -lgmp
+//g++ -std=c++11 -o main.o main.cpp Algorithms.cpp factor_list.cpp -lgmp
 //./main.o < "./samples/factoring.in"
 
 using namespace std;
@@ -68,15 +68,13 @@ int main(int argc, char* argv[]) {
                 mpz_divexact(rest, number, prod);
                 f = f->next;
             }
-            //gmp_printf("%s number is %Zd\n", "The", number);
-            //gmp_printf("%s rest is %Zd\n", "The", rest);
             int comp = mpz_cmp(number, prod);
 
             if(comp==0){
                 factors_print(factors);
                 cout<<endl;
             }
-            else if(is_prime(rest, 5) > 0){ //WHY NOT WORKING???
+            else if(is_prime(rest, 5) > 0){
                 //add(&factors, &rest);
                 factors_print(factors);
                 gmp_printf("%Zd\n", rest);

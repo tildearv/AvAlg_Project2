@@ -25,10 +25,6 @@ void func(mpz_t y, mpz_t x, mpz_t number){//y = (x^2+a)%number;
 
 factor_list * floyd(factor_list **f, mpz_t number, unsigned long int a_in, unsigned long int b_in) {
 
-    //factor_list *f = (factor_list*)malloc(sizeof(factor_list));
-
-    //f = *factors;
-
     if (mpz_cmp_ui(number, 1) <= 0){//number 1 and under
         return *f;
     }else if(is_prime(number, 5) > 0){
