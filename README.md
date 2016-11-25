@@ -5,11 +5,11 @@ Factoring big numbers
 
 #pollard: https://www.cs.colorado.edu/~srirams/courses/csci2824-spr14/pollardsRho.html
 
-#Might need data structure to store factors
+#Might need data structure to store factors - done
 
 #Naive
 
-#Pollard rho-algorithm
+#Pollard rho-algorithm - done
 
 # trial divide - done
 # read input files - done
