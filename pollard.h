@@ -7,7 +7,8 @@
 #include "factor_list.h"
 #include "Algorithms.h"
 
-void func(mpz_t, mpz_t, mpz_t);
+factor_list * solve_pollard (factor_list **, mpz_t);
+void func(mpz_t, mpz_t, mpz_t, unsigned long int);
 factor_list * floyd(factor_list **, mpz_t, unsigned long int, unsigned long int);
 
 #endif

@@ -11,7 +11,7 @@ typedef struct factor_list
 } factor_list;
 
 factor_list * add(factor_list **, mpz_t *);
-factor_list * add_list(factor_list **, std::vector<int>);
+factor_list * add_list(factor_list **, factor_list *);
 void factors_print(factor_list *);
 
 #endif

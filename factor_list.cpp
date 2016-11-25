@@ -18,17 +18,14 @@ factor_list * add(factor_list ** f, mpz_t * v){
     *f=new_list;
     return new_list;
 }
-factor_list * add_list(factor_list ** f, vector<int> v){
+factor_list * add_list(factor_list ** f, factor_list * f2){
 
     factor_list *new_list = (factor_list*)malloc(sizeof(factor_list));
-    mpz_t * tmp = (mpz_t *) malloc(sizeof(mpz_t));
-    //mpz_init (* tmp);
-    //gmp_printf("%s\n", "return");
 
-    for(int i = 0; i < v.size(); ++i){
-        //gmp_printf("%d\n", v[i]);
-        mpz_init_set_ui(*tmp, v[i]);
-        add(f, tmp);
+    while(*(f2->value) != NULL){
+        //gmp_printf("%Zd\n", *(f2->value));
+        add(f, (f2->value));
+        f2 = f2->next;
     }
 
     *f=new_list;

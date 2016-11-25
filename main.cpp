@@ -50,7 +50,8 @@ int main(int argc, char* argv[]) {
 
             factors = divide_by_first_primes(&factors, temp_number);
 
-            floyd(&factors, temp_number, 2, 2);
+            //floyd(&factors, temp_number, 2, 2);
+            solve_pollard(&factors, temp_number);
 
             factor_list *f = (factor_list*)malloc(sizeof(factor_list));
 
