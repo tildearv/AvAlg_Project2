@@ -8,5 +8,6 @@
 int is_prime(mpz_t, int);
 factor_list * divide_by_first_primes(factor_list**, mpz_t);
 std::vector<int> naive_factoring(mpz_t);
+std::vector<int> random_naive_factoring(mpz_t);
 
 #endif

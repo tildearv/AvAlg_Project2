@@ -106,13 +106,12 @@ int is_prime(mpz_t number, int reps){
 
 
 
-
 vector<int> naive_factoring(mpz_t number) {
     vector<int> factors;
     int div;
     bool done = false;
-    unsigned long int N = mpz_get_ui(number);
-    for (unsigned long int p = 2; p < N; p++) {
+    unsigned long int iterations = 40000;
+    for (unsigned long int p = 2; p < iterations; p++) {
         done = false;
         while(!done) {
             div = mpz_divisible_ui_p(number, p);
@@ -123,6 +122,50 @@ vector<int> naive_factoring(mpz_t number) {
                 factors.push_back(p);
             }
         }
+    }
+
+    unsigned long int N = mpz_get_ui(number);
+
+    if (N > 1) {
+        factors.clear();
+        factors.push_back(0);
+    }
+    return factors;
+}
+
+vector<int> random_naive_factoring(mpz_t number) {
+    vector<int> factors;
+    int div;
+    srand (time(NULL));
+    bool done = false;
+    unsigned long int N = mpz_get_ui(number);
+    if (N < 1){
+        factors.push_back(0);
+        return factors;
+    }
+    unsigned long int p = 1;
+    unsigned long int iterations = 4000;
+    for (unsigned long int i = 0; i < iterations; i++) {
+        done = false;
+        p = (unsigned long int) rand() % N + 2;
+        mpz_t tmp;
+        mpz_init(tmp);
+        mpz_set_ui(tmp, p);
+        while(!done && is_prime(tmp, 50) ==  2 && p > 1) {
+            div = mpz_divisible_ui_p(number, p);
+            if (div == 0) {
+                done = true;
+            } else {
+                mpz_divexact_ui (number, number, p);
+                factors.push_back(p);
+            }
+        }
+    }
+
+    N = mpz_get_ui(number);
+    if (N > 1) {
+        factors.clear();
+        factors.push_back(0);
     }
     return factors;
 }
