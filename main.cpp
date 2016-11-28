@@ -40,7 +40,7 @@ int main(int argc, char* argv[]) {
             gmp_printf("%Zd \n", number);
             cout<<endl;
         }else{
- 
+
             factor_list * factors = (factor_list*)malloc(sizeof(factor_list));
             factors->value = NULL;
             factors->next = NULL;
@@ -85,7 +85,6 @@ int main(int argc, char* argv[]) {
             }
 
             //vector<int> factors = naive_factoring(number);
-            
         }
     }
     cout<<endl;
